@@ -8,3 +8,9 @@ function makeGrid() {
 }
 
 makeGrid();
+
+container.addEventListener('mouseover', function (e) {
+    if (e.target.nodeName = 'div' && e.target != container) {
+        e.target.style = 'background-color: green;';
+    }
+})
