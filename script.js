@@ -1,16 +1,47 @@
 const container = document.querySelector("#container");
 
-function makeGrid() {
-    for (let i = 0; i < 256; i++) {
+let gridWidth = 16;
+
+function makeGrid(gridWidth) {
+    for (let i = 0; i < gridWidth * gridWidth; i++) {
             const grid = document.createElement("div");
             container.appendChild(grid);
     }
 }
+makeGrid(gridWidth);
 
-makeGrid();
+function deleteGrid() {
+    while(container.firstChild) {
+    container.removeChild(container.lastChild);
+    }   
+}
 
-container.addEventListener('mouseover', function (e) {
+
+
+container.addEventListener('mouseover', function(e) {
     if (e.target.nodeName = 'div' && e.target != container) {
-        e.target.style = 'background-color: green;';
+        e.target.style = 'background-color: lightgreen;';
     }
 })
+
+const sizeButton = document.querySelector("#sizeButton");
+
+sizeButton.addEventListener('click', function(e) {
+    let validGrid = false;
+    gridWidth = prompt("Enter grid width (from 1 to 100 squares)", "16");
+    while (!validGrid) {
+        if (gridWidth === null) {
+            return;
+        }
+        else if (gridWidth >= 1 && gridWidth <= 100) {
+            validGrid = true;
+            deleteGrid()
+            makeGrid(gridWidth);
+
+        } else {
+            gridWidth = prompt("Invalid input, try again.");
+        }
+    }
+    
+})
+
