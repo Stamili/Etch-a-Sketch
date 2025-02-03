@@ -21,11 +21,26 @@ function deleteGrid() {
 
 
 
+let globalStrength = 10;
+
+function randomColor(strength) {
+    let x = Math.floor(Math.random() * 256);
+    let y = Math.floor(Math.random() * 256);
+    let z = Math.floor(Math.random() * 256);
+
+    let color = `rgba(${x}, ${y}, ${z}, ${strength / 100})`;
+    return color;
+}
+
 container.addEventListener('mouseover', function(e) {
-    if (e.target.nodeName = 'div' && e.target != container) {
-        e.target.style.backgroundColor = 'lightgreen';
+    if (e.target.nodeName === 'DIV' && e.target !== container) {
+        let currentStrength = e.target.dataset.strength ? parseInt(e.target.dataset.strength) : 
+        globalStrength;
+        e.target.style.backgroundColor = randomColor(currentStrength);
+        e.target.dataset.strength = currentStrength + globalStrength;
     }
-})
+});
+
 
 const sizeButton = document.querySelector("#sizeButton");
 
