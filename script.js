@@ -4,9 +4,12 @@ let gridWidth = 16;
 
 function makeGrid(gridWidth) {
     for (let i = 0; i < gridWidth * gridWidth; i++) {
-            const grid = document.createElement("div");
-            container.appendChild(grid);
+        const grid = document.createElement("div");
+        grid.style.height = `${480/gridWidth - 2}px`;
+        grid.style.width = `${480/gridWidth - 2}px`;   
+        container.appendChild(grid);
     }
+
 }
 makeGrid(gridWidth);
 
@@ -20,7 +23,7 @@ function deleteGrid() {
 
 container.addEventListener('mouseover', function(e) {
     if (e.target.nodeName = 'div' && e.target != container) {
-        e.target.style = 'background-color: lightgreen;';
+        e.target.style.backgroundColor= 'lightgreen';
     }
 })
 
